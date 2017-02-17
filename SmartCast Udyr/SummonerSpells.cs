@@ -23,9 +23,6 @@ namespace SmartCast
                 Ignite = new Spell.Targeted(slot, 600, DamageType.True);
             else if (SummonerSpell.Contains("Smite"))
                 Smite = new Spell.Targeted(slot, 500, DamageType.True);
-
-            if (SummonerSpell == Spells["Smite"] || SummonerSpell == Spells["Chilling Smite"] || SummonerSpell == Spells["Challenging Smite"])
-                Smite = new Spell.Targeted(slot, 500, DamageType.True);
         }
 
         internal static float Damage(Obj_AI_Base target, SpellSlot slot, bool quick = false)
