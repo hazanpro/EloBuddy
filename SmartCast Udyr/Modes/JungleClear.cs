@@ -1,10 +1,12 @@
-﻿using EloBuddy;
+using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Menu.Values;
 using System.Collections.Generic;
 using System.Linq;
 using static SmartCast.Abilities;
-using static SmartCast.Utilities;
+using static SmartCast.Settings;
 using static SmartCast.SummonerSpells;
+using static SmartCast.Utilities;
 
 namespace SmartCast.Modes
 {
@@ -20,40 +22,43 @@ namespace SmartCast.Modes
             if (targets == null || targets.Count == 0)
                 return;
 
+            int HealthStrong = Fight["MinionsAndMonsters.Strong"].Cast<Slider>().CurrentValue;
+            int HealthWeak = Fight["MinionsAndMonsters.Weak"].Cast<Slider>().CurrentValue;
+
             SmiteSteal();
-            SwitchStance();
+            SwitchStance(HealthStrong, HealthWeak);
         }
 
         private static void SmiteSteal()
         {
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Baron Nashor"]), true);
+                Killable(GetMonster(Monsters["Baron Nashor"]), Smites["Monster.BaronNashor"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Rift Herard"]), true);
+                Killable(GetMonster(Monsters["Rift Herard"]), Smites["Monster.RiftHerard"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Mountain Drake"]), true);
+                Killable(GetMonster(Monsters["Mountain Drake"]), Smites["Monster.MountainDrake"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Blue Sentinel"]), true);
+                Killable(GetMonster(Monsters["Blue Sentinel"]), Smites["Monster.BlueSentinel"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Red Brambleback"]), true);
+                Killable(GetMonster(Monsters["Red Brambleback"]), Smites["Monster.RedBrambleback"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Rift Scutller"]), true);
+                Killable(GetMonster(Monsters["Rift Scutller"]), Smites["Monster.RiftScutller"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Gromp"]), true);
+                Killable(GetMonster(Monsters["Gromp"]), Smites["Monster.Gromp"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Crimson Raptor"]), true);
+                Killable(GetMonster(Monsters["Crimson Raptor"]), Smites["Monster.CrimsonRaptor"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Raptor"]), false);
+                Killable(GetMonster(Monsters["Raptor"]), Smites["Monster.Raptor"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Geater Murk Wolf"]), true);
+                Killable(GetMonster(Monsters["Greater Murk Wolf"]), Smites["Monster.GreaterMurkWolf"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Murk Wolf"]), false);
+                Killable(GetMonster(Monsters["Murk Wolf"]), Smites["Monster.MurkWolf"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Ancient Krug"]), true);
+                Killable(GetMonster(Monsters["Ancient Krug"]), Smites["Monster.AncientKrug"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Krug"]), false);
+                Killable(GetMonster(Monsters["Krug"]), Smites["Monster.Krug"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMonster(Monsters["Mini Krug"]), false);
+                Killable(GetMonster(Monsters["Mini Krug"]), Smites["Monster.MiniKrug"].Cast<CheckBox>().CurrentValue);
         }
 
         private static Obj_AI_Minion GetMonster(string name)
@@ -74,7 +79,7 @@ namespace SmartCast.Modes
                 Smite.Cast(target);
         }
 
-        private static void SwitchStance()
+        private static void SwitchStance(int HealthStrong, int HealthWeak)
         {
             if (Udyr.HasBuff(Buffs["R.Activation"]))
                 return;
@@ -89,9 +94,9 @@ namespace SmartCast.Modes
             {
                 if (Name == Monsters["Baron Nashor"])
                     W.Cast();
-                else if (Udyr.Health <= 1500 && (Name == Monsters["Rift Herard"] || Name == Monsters["Mountain Drake"]))
+                else if (Udyr.Health <= HealthStrong && (Name == Monsters["Rift Herard"] || Name == Monsters["Mountain Drake"]))
                     W.Cast();
-                else if (Udyr.Health <= 1000)
+                else if (Udyr.Health <= HealthWeak)
                     W.Cast();
             }
 
