@@ -1,4 +1,4 @@
-using EloBuddy;
+﻿using EloBuddy;
 using static SmartCast.Utilities;
 
 namespace SmartCast

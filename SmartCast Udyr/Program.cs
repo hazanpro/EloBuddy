@@ -1,4 +1,4 @@
-using EloBuddy;
+﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using System;
