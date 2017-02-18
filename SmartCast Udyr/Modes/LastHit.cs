@@ -1,4 +1,4 @@
-﻿using EloBuddy;
+using EloBuddy;
 using EloBuddy.SDK;
 using System.Collections.Generic;
 using System.Linq;
