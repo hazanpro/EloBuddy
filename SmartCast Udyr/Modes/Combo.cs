@@ -52,8 +52,7 @@ namespace SmartCast.Modes
             }
             else if (Smite != null && Smite.IsReady() && Smite.Name == Spells["Chilling Smite"])
             {
-                int Distance = Smites["Chilling.Distance"].Cast<Slider>().CurrentValue;
-                AIHeroClient target = targets.OrderBy(Enemy => Enemy.Health).Where(Enemy => IsValid(Enemy, Smite.Range) && Enemy.Distance(Udyr) > Distance && !Enemy.HasBuffOfType(BuffType.Stun)).FirstOrDefault();
+                AIHeroClient target = targets.OrderBy(Enemy => Enemy.Health).Where(Enemy => IsValid(Enemy, Smite.Range)).FirstOrDefault();
 
                 if (target != null && target.Health <= SummonerSpells.Damage(target, Smite.Slot))
                     Smite.Cast(target);
