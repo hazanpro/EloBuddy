@@ -1,4 +1,4 @@
-﻿using EloBuddy;
+using EloBuddy;
 using EloBuddy.SDK;
 using System.Collections.Generic;
 
@@ -113,7 +113,7 @@ namespace SmartCast
             Monsters.Add("Raptor", "SRU_RazorbeakMini");
 
             // Murk Wolfs
-            Monsters.Add("Geater Murk Wolf", "SRU_Murkwolf");
+            Monsters.Add("Greater Murk Wolf", "SRU_Murkwolf");
             Monsters.Add("Murk Wolf", "SRU_MurkwolfMini");
 
             // Krugs
