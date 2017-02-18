@@ -1,4 +1,4 @@
-﻿using EloBuddy;
+using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 using System;
@@ -19,10 +19,12 @@ namespace SmartCast
                 return;
 
             Utilities.Initialize();
+            Settings.Initialize();
             Events.Initialize();
             Abilities.Initialize();
             SummonerSpells.Initialize();
             Items.Initialize();
+
             Chat.Print("SmartCast Udyr", Color.DarkGray);
 
             Game.OnTick += OnTick;
