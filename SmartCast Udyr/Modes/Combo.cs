@@ -1,4 +1,4 @@
-using EloBuddy;
+﻿using EloBuddy;
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu.Values;
 using System.Linq;
@@ -52,7 +52,8 @@ namespace SmartCast.Modes
             }
             else if (Smite != null && Smite.IsReady() && Smite.Name == Spells["Chilling Smite"])
             {
-                AIHeroClient target = targets.OrderBy(Enemy => Enemy.Health).Where(Enemy => IsValid(Enemy, Smite.Range)).FirstOrDefault();
+                int Distance = Smites["Chilling.Distance"].Cast<Slider>().CurrentValue;
+                AIHeroClient target = targets.OrderBy(Enemy => Enemy.Health).Where(Enemy => IsValid(Enemy, Smite.Range) && Enemy.Distance(Udyr) > Distance && !Enemy.HasBuffOfType(BuffType.Stun)).FirstOrDefault();
 
                 if (target != null && target.Health <= SummonerSpells.Damage(target, Smite.Slot))
                     Smite.Cast(target);
