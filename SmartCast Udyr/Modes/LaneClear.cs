@@ -1,10 +1,12 @@
-﻿using EloBuddy;
+using EloBuddy;
 using EloBuddy.SDK;
+using EloBuddy.SDK.Menu.Values;
 using System.Collections.Generic;
 using System.Linq;
 using static SmartCast.Abilities;
-using static SmartCast.Utilities;
+using static SmartCast.Settings;
 using static SmartCast.SummonerSpells;
+using static SmartCast.Utilities;
 
 namespace SmartCast.Modes
 {
@@ -20,20 +22,22 @@ namespace SmartCast.Modes
             if (targets == null || targets.Count == 0)
                 return;
 
+            int HealthWeak = Fight["MinionsAndMonsters.Weak"].Cast<Slider>().CurrentValue;
+
             SmiteSteal();
-            SwitchStance();
+            SwitchStance(HealthWeak);
         }
 
         private static void SmiteSteal()
         {
             if (Smite.IsReady())
-                Killable(GetMinion(Minions["Super"]), true);
+                Killable(GetMinion(Minions["Super"]), Smites["Minion.Super"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMinion(Minions["Siege"]), true);
+                Killable(GetMinion(Minions["Siege"]), Smites["Minion.Siege"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMinion(Minions["Melee"]), false);
+                Killable(GetMinion(Minions["Melee"]), Smites["Minion.Melee"].Cast<CheckBox>().CurrentValue);
             if (Smite.IsReady())
-                Killable(GetMinion(Minions["Caster"]), false);
+                Killable(GetMinion(Minions["Caster"]), Smites["Minion.Caster"].Cast<CheckBox>().CurrentValue);
         }
 
         private static Obj_AI_Minion GetMinion(string name)
@@ -54,7 +58,7 @@ namespace SmartCast.Modes
                 Smite.Cast(target);
         }
 
-        private static void SwitchStance()
+        private static void SwitchStance(int HealthWeak)
         {
             if (Udyr.HasBuff(Buffs["R.Activation"]))
                 return;
@@ -62,7 +66,7 @@ namespace SmartCast.Modes
                 R.Cast();
             else if (!R.IsLearned && Q.IsReady())
                 Q.Cast();
-            else if (W.IsReady() && Udyr.Health <= 1000 && !TigerEffect() && !PhoenixEffect())
+            else if (W.IsReady() && Udyr.Health <= HealthWeak && !TigerEffect() && !PhoenixEffect())
                 W.Cast();
 
             Obj_AI_Minion target = targets.OrderBy(Minion => Minion.Health).Where(Minion => Minion.IsInRange(Udyr, Udyr.AttackRange)).FirstOrDefault();
