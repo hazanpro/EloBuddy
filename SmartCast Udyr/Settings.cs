@@ -38,6 +38,7 @@ namespace SmartCast
             Fight.Add("Enemies.Health", new Slider("[W] Health (%)", 65, 60, 70));
             Fight.AddSeparator();
             Fight.AddGroupLabel("Minions and Monsters");
+            Fight.Add("MinionsAndMonsters.Range", new Slider("Range", 300, 250, 350));
             Fight.AddLabel("[W] Health Vs. Baron activated automatically");
             Fight.Add("MinionsAndMonsters.Strong", new Slider("[W] Health Vs. Herard & Drake", 1500, 1000, 2000));
             Fight.Add("MinionsAndMonsters.Weak", new Slider("[W] Health Vs. Others", 1000, 500, 1500));
