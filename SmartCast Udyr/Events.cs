@@ -1,4 +1,8 @@
-﻿using EloBuddy;
+using EloBuddy;
+using EloBuddy.SDK.Menu.Values;
+using System;
+using System.Drawing;
+using static SmartCast.Settings;
 using static SmartCast.Utilities;
 
 namespace SmartCast
