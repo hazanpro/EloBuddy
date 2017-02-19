@@ -85,6 +85,8 @@ namespace SmartCast.Modes
                 return;
             else if (R.IsReady() && !TigerEffect() && targets.Count > 1)
                 R.Cast();
+            else if (R.IsReady() && !Q.IsLearned)
+                R.Cast();
             else if (!R.IsLearned && Q.IsReady())
                 Q.Cast();
 
