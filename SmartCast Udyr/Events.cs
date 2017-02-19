@@ -10,6 +10,7 @@ namespace SmartCast
             Obj_AI_Base.OnBasicAttack += OnBasicAttack;
             Obj_AI_Base.OnBuffGain += OnBuffGain;
             Obj_AI_Base.OnBuffLose += OnBuffLose;
+            Drawing.OnDraw += OnDraw;
         }
 
         private static void OnBasicAttack(Obj_AI_Base sender, GameObjectProcessSpellCastEventArgs args)
@@ -56,6 +57,12 @@ namespace SmartCast
             }
             else if (sender.IsMe && args.Buff.Name == Buffs["R.Stance"])
                 PhoenixHits = 0;
+        }
+        
+        private static void OnDraw(EventArgs args)
+        {
+            int Range = Fight["Enemies.Range"].Cast<Slider>().CurrentValue;
+            Drawing.DrawCircle(Udyr.Position, Range, Color.DarkGray);
         }
     }
 }
