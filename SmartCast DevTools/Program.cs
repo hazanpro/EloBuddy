@@ -50,8 +50,6 @@ namespace SmartCast
                 msg = msg.Replace("goto", "");
                 msg = msg.Replace(" ", "");
 
-                Chat.Print(msg);
-
                 string[] value = msg.Split(',');
 
                 if (value.Length != 2)
@@ -65,7 +63,6 @@ namespace SmartCast
                     return;
 
                 Vector3 position = new Vector3(x, y, 0);
-
                 args.Process = false;
                 Orbwalker.MoveTo(position);
             }
