@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SmartCast Udyr")]
+[assembly: AssemblyProduct("SmartCast Udyr 7.3")]
 [assembly: AssemblyCopyright("Copyright © hazanpro 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
