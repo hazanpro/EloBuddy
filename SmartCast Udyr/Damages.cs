@@ -234,7 +234,7 @@ namespace SmartCast
         {
             float damage = 0;
             int[] Smite = new int[] { 390, 410, 430, 450, 480, 510, 540, 570, 600, 640, 680, 720, 760, 800, 850, 900, 950, 1000 };
-            int trueDamage = Smite[Udyr.Level];
+            int trueDamage = Smite[Udyr.Level - 1];
 
             damage = Udyr.CalculateDamageOnUnit(target, DamageType.True, trueDamage, false, true);
 
